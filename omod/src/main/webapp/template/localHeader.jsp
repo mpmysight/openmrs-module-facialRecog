@@ -7,12 +7,12 @@
 	<li
 		<c:if test='<%= request.getRequestURI().contains("/manage") %>'>class="active"</c:if>>
 		<a
-		href="${pageContext.request.contextPath}/module/openmrs-module-facialRecog/manage.form"><spring:message
-				code="openmrs-module-facialRecog.manage" /></a>
+		href="${pageContext.request.contextPath}/module/facialrecog/manage.form"><spring:message
+				code="facialrecog.manage" /></a>
 	</li>
 	
 	<!-- Add further links here -->
 </ul>
 <h2>
-	<spring:message code="openmrs-module-facialRecog.title" />
+	<spring:message code="facialrecog.title" />
 </h2>

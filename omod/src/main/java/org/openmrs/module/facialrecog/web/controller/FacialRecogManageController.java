@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.web.controller;
+package org.openmrs.module.facialrecog.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -25,12 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * The main controller.
  */
 @Controller
-public class  openmrs-module-facialRecogManageController {
+public class  FacialRecogManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/openmrs-module-facialRecog/manage", method = RequestMethod.GET)
-	public void manage(ModelMap model) {
+	@RequestMapping(value = "/module/facialrecog/view.list", method = RequestMethod.GET)
+	public void view(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
 }

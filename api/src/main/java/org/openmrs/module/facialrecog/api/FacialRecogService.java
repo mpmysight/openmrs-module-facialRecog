@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.api;
+package org.openmrs.module.facialrecog.api;
 
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +21,13 @@ import org.springframework.transaction.annotation.Transactional;
  * <p>
  * It can be accessed only via Context:<br>
  * <code>
- * Context.getService(openmrs-module-facialRecogService.class).someMethod();
+ * Context.getService(FacialRecogService.class).someMethod();
  * </code>
  * 
  * @see org.openmrs.api.context.Context
  */
 @Transactional
-public interface openmrs-module-facialRecogService extends OpenmrsService {
+public interface FacialRecogService extends OpenmrsService {
      
 	/*
 	 * Add service methods here

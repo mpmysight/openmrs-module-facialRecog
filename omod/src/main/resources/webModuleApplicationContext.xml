@@ -23,10 +23,10 @@
 	<!-- Add here beans related to the web context -->
 
 	 
-	<!-- Annotation based controllers -->
+	<!-- Annotation based controllers.js -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	
-	<context:component-scan base-package="org.openmrs.module.openmrs-module-facialRecog.web.controller" />
+	<context:component-scan base-package="org.openmrs.module.facialrecog.web.controller" />
  
 		
 </beans>

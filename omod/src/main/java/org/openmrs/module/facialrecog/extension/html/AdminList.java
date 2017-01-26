@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.extension.html;
+package org.openmrs.module.facialrecog.extension.html;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ import org.openmrs.module.web.extension.AdministrationSectionExt;
 
 /**
  * This class defines the links that will appear on the administration page under the
- * "openmrs-module-facialRecog.title" heading. 
+ * "facialrecog.title" heading.
  */
 public class AdminList extends AdministrationSectionExt {
 	
@@ -36,7 +36,7 @@ public class AdminList extends AdministrationSectionExt {
 	 * @see AdministrationSectionExt#getTitle()
 	 */
 	public String getTitle() {
-		return "openmrs-module-facialRecog.title";
+		return "facialrecog.title";
 	}
 	
 	/**
@@ -44,7 +44,7 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("/module/openmrs-module-facialRecog/manage.form", "openmrs-module-facialRecog.manage");
+		map.put("/module/facialrecog/view.list", "facialrecog.manage");
 		return map;
 	}
 	

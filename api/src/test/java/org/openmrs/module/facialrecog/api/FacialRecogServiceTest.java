@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.api;
+package org.openmrs.module.facialrecog.api;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -19,12 +19,12 @@ import org.openmrs.api.context.Context;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 /**
- * Tests {@link ${openmrs-module-facialRecogService}}.
+ * Tests {@link ${FacialRecogService}}.
  */
-public class  openmrs-module-facialRecogServiceTest extends BaseModuleContextSensitiveTest {
+public class  FacialRecogServiceTest extends BaseModuleContextSensitiveTest {
 	
 	@Test
 	public void shouldSetupContext() {
-		assertNotNull(Context.getService(openmrs-module-facialRecogService.class));
+		assertNotNull(Context.getService(FacialRecogService.class));
 	}
 }

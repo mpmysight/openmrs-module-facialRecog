@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>openmrs-module-facialRecog</artifactId>
+	<artifactId>facialrecog</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>openmrs-module-facialRecog Module</name>
+	<name>facialrecog Module</name>
 	<description>Biometrics in OpenMRS</description>
-	<url>https://wiki.openmrs.org/display/docs/openmrs-module-facialRecog+Module+Module</url>
+	<url>https://wiki.openmrs.org/display/docs/facialrecog+Module+Module</url>
 	
 	<developers>
 		<developer>
@@ -22,9 +22,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/openmrs-module-facialRecog/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/openmrs-module-facialRecog/trunk/</developerConnection>
-		<url>https://svn.openmrs.org/openmrs-modules/openmrs-module-facialRecog/trunk/</url>
+		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/facialrecog/trunk/</connection>
+		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/facialrecog/trunk/</developerConnection>
+		<url>https://svn.openmrs.org/openmrs-modules/facialrecog/trunk/</url>
 	</scm>
 
 	<modules>

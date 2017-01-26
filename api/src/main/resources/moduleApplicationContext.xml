@@ -24,16 +24,16 @@
 	<bean parent="serviceContext">
 		<property name="moduleService">
 			<list>
-				<value>${project.parent.groupId}.${project.parent.artifactId}.api.openmrs-module-facialRecogService</value>
+				<value>${project.parent.groupId}.${project.parent.artifactId}.api.FacialRecogService</value>
 				<bean
 					class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 					<property name="transactionManager">
 						<ref bean="transactionManager" />
 					</property>
 					<property name="target">
-						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.openmrs-module-facialRecogServiceImpl">
+						<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.impl.FacialRecogServiceImpl">
 							<property name="dao">
-								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.Hibernateopenmrs-module-facialRecogDAO">
+								<bean class="${project.parent.groupId}.${project.parent.artifactId}.api.db.hibernate.HibernateFacialRecogDAO">
 									<property name="sessionFactory">
 										<ref bean="sessionFactory" />
 									</property>

@@ -4,14 +4,14 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>openmrs-module-facialRecog</artifactId>
+		<artifactId>facialrecog</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>openmrs-module-facialRecog-api</artifactId>
+	<artifactId>facialrecog-api</artifactId>
 	<packaging>jar</packaging>
-	<name>openmrs-module-facialRecog Module API</name>
-	<description>API project for openmrs-module-facialRecog</description>
+	<name>facialrecog Module API</name>
+	<description>API project for facialrecog</description>
 
 	<dependencies>
 	

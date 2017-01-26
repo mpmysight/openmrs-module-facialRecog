@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog;
+package org.openmrs.module.facialrecog;
 
 
 import org.apache.commons.logging.Log; 
@@ -21,7 +21,7 @@ import org.openmrs.module.ModuleActivator;
 /**
  * This class contains the logic that is run every time this module is either started or stopped.
  */
-public class openmrs-module-facialRecogActivator implements ModuleActivator {
+public class FacialRecogActivator implements ModuleActivator {
 	
 	protected Log log = LogFactory.getLog(getClass());
 		
@@ -29,42 +29,42 @@ public class openmrs-module-facialRecogActivator implements ModuleActivator {
 	 * @see ModuleActivator#willRefreshContext()
 	 */
 	public void willRefreshContext() {
-		log.info("Refreshing openmrs-module-facialRecog Module");
+		log.info("Refreshing facialrecog Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#contextRefreshed()
 	 */
 	public void contextRefreshed() {
-		log.info("openmrs-module-facialRecog Module refreshed");
+		log.info("facialrecog Module refreshed");
 	}
 	
 	/**
 	 * @see ModuleActivator#willStart()
 	 */
 	public void willStart() {
-		log.info("Starting openmrs-module-facialRecog Module");
+		log.info("Starting facialrecog Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#started()
 	 */
 	public void started() {
-		log.info("openmrs-module-facialRecog Module started");
+		log.info("facialrecog Module started");
 	}
 	
 	/**
 	 * @see ModuleActivator#willStop()
 	 */
 	public void willStop() {
-		log.info("Stopping openmrs-module-facialRecog Module");
+		log.info("Stopping facialrecog Module");
 	}
 	
 	/**
 	 * @see ModuleActivator#stopped()
 	 */
 	public void stopped() {
-		log.info("openmrs-module-facialRecog Module stopped");
+		log.info("facialrecog Module stopped");
 	}
 		
 }

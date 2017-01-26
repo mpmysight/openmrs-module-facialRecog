@@ -11,17 +11,17 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.api.db.hibernate;
+package org.openmrs.module.facialrecog.api.db.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
-import org.openmrs.module.openmrs-module-facialRecog.api.db.openmrs-module-facialRecogDAO;
+import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
 
 /**
- * It is a default implementation of  {@link openmrs-module-facialRecogDAO}.
+ * It is a default implementation of  {@link FacialRecogDAO}.
  */
-public class Hibernateopenmrs-module-facialRecogDAO implements openmrs-module-facialRecogDAO {
+public class HibernateFacialRecogDAO implements FacialRecogDAO {
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private SessionFactory sessionFactory;

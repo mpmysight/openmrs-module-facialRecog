@@ -11,7 +11,7 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog;
+package org.openmrs.module.facialrecog;
 
 import java.io.Serializable;
 import org.openmrs.BaseOpenmrsObject;
@@ -20,7 +20,7 @@ import org.openmrs.BaseOpenmrsMetadata;
 /**
  * It is a model class. It should extend either {@link BaseOpenmrsObject} or {@link BaseOpenmrsMetadata}.
  */
-public class openmrs-module-facialRecog extends BaseOpenmrsObject implements Serializable {
+public class FacialRecog extends BaseOpenmrsObject implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

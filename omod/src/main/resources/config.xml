@@ -17,7 +17,7 @@
 
 	
 	<!-- Module Activator -->
-	<activator>${project.parent.groupId}.${project.parent.artifactId}.openmrs-module-facialRecogActivator</activator>
+	<activator>${project.parent.groupId}.${project.parent.artifactId}.FacialRecogActivator</activator>
 	
 	
 	<!-- Adds link to admin page -->
@@ -29,7 +29,7 @@
 	<!-- Maps hibernate file's, if present -->
 	<mappingFiles>
 				
-		openmrs-module-facialRecog.hbm.xml
+		facialrecog.hbm.xml
 				
 	</mappingFiles>
 

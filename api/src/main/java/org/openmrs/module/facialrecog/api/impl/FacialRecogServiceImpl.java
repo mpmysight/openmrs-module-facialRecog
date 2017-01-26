@@ -11,34 +11,34 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.api.impl;
+package org.openmrs.module.facialrecog.api.impl;
 
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.module.openmrs-module-facialRecog.api.openmrs-module-facialRecogService;
-import org.openmrs.module.openmrs-module-facialRecog.api.db.openmrs-module-facialRecogDAO;
+import org.openmrs.module.facialrecog.api.FacialRecogService;
+import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
 
 /**
- * It is a default implementation of {@link openmrs-module-facialRecogService}.
+ * It is a default implementation of {@link FacialRecogService}.
  */
-public class openmrs-module-facialRecogServiceImpl extends BaseOpenmrsService implements openmrs-module-facialRecogService {
+public class FacialRecogServiceImpl extends BaseOpenmrsService implements FacialRecogService {
 	
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
-	private openmrs-module-facialRecogDAO dao;
+	private FacialRecogDAO dao;
 	
 	/**
      * @param dao the dao to set
      */
-    public void setDao(openmrs-module-facialRecogDAO dao) {
+    public void setDao(FacialRecogDAO dao) {
 	    this.dao = dao;
     }
     
     /**
      * @return the dao
      */
-    public openmrs-module-facialRecogDAO getDao() {
+    public FacialRecogDAO getDao() {
 	    return dao;
     }
 }

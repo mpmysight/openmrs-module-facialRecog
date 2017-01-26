@@ -11,14 +11,14 @@
  *
  * Copyright (C) OpenMRS, LLC.  All Rights Reserved.
  */
-package org.openmrs.module.openmrs-module-facialRecog.api.db;
+package org.openmrs.module.facialrecog.api.db;
 
-import org.openmrs.module.openmrs-module-facialRecog.api.openmrs-module-facialRecogService;
+import org.openmrs.module.facialrecog.api.FacialRecogService;
 
 /**
- *  Database methods for {@link openmrs-module-facialRecogService}.
+ *  Database methods for {@link FacialRecogService}.
  */
-public interface openmrs-module-facialRecogDAO {
+public interface FacialRecogDAO {
 	
 	/*
 	 * Add DAO methods here
