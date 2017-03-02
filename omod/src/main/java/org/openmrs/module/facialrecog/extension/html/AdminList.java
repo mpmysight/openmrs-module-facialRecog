@@ -44,7 +44,7 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
-		map.put("/module/facialrecog/view.list", "facialrecog.manage");
+		map.put("/module/facialrecog/facehome.list", "facialrecog.manage");
 		return map;
 	}
 	

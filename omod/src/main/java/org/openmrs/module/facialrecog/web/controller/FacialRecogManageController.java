@@ -29,7 +29,7 @@ public class  FacialRecogManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@RequestMapping(value = "/module/facialrecog/view.list", method = RequestMethod.GET)
+	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.GET)
 	public void view(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
