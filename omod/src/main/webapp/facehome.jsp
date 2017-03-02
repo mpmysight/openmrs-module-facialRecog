@@ -6,13 +6,13 @@
 <openmrs:htmlInclude file="/moduleResources/facialrecog/css/simple-sidebar.css"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/css/noscript.css"/>
 
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/jquery/jquery.js" />
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/jquery/jquery-3.1.1.min.js" />
 
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular.js"/>
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-resource.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-v1.2.32.min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-route.min.js"/>
 
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/app.js"/>
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/controllers.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/app.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/controllers.js"/>
 
 <h3><spring:message code="mUzima Biometrics - Facial Recognition"/></h3>
 <div class="bootstrap-scope" ng-app="facialrecog">
