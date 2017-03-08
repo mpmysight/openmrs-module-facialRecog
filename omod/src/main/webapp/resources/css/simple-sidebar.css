@@ -24,10 +24,10 @@
 
 #sidebar-wrapper {
     z-index: 1000;
-    position: fixed;
+    position: absolute;
     left: 250px;
     width: 0;
-    height: 90%;
+    height: 70%;
     margin-left: -250px;
     overflow-y: auto;
     background: #000;
@@ -71,7 +71,7 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #ffffff !important;
 	font-weight:600;
 }
 
@@ -135,9 +135,39 @@
     width: 500px;
     height: 375px;
 	//border: 5px solid red;
+	margin-left: 15%;
+	margin-top: 2%;
 }
 #videoElement {
     width: 500px;
     height: 375px;
     background-color: #666;
 }
+
+ul.icons {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 28%;
+    position: absolute;
+    margin-top: 33%;
+}
+
+h3.module-head{
+text-align:center;
+}
+
+#video, #canvas {
+    //margin-left: 230px;
+    //margin-top: 120px;
+    position: absolute;
+    margin: 0px auto;
+        width: 500px;
+        height: 375px;
+    	//border: 5px solid red;
+    	margin-left: 15%;
+    	margin-top: 2%;
+  }
+
+  .dg.ac {
+      margin-top: 8%;
+  }

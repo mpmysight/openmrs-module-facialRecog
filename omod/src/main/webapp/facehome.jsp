@@ -6,15 +6,20 @@
 <openmrs:htmlInclude file="/moduleResources/facialrecog/css/simple-sidebar.css"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/css/noscript.css"/>
 
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/jquery/jquery-3.1.1.min.js" />
-
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-v1.2.32.min.js"/>
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-route.min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/jquery/jquery.js" />
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-resource.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/tracking-min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/tracking.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/face-min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/dat.gui.min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/stats.min.js"/>
 
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/app.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/controllers.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/ui-bootstrap/ui-bootstrap-custom-tpls-0.4.0.js"/>
 
-<h3><spring:message code="mUzima Biometrics - Facial Recognition"/></h3>
+<h3 class="module-head"><spring:message code="mUzima Biometrics - Facial Recognition"/></h3>
 <div class="bootstrap-scope" ng-app="facialrecog">
     <div ng-view ></div>
 </div>

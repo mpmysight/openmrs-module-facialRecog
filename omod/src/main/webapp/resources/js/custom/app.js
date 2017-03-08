@@ -1,4 +1,4 @@
-var facialrecog = angular.module('facialrecog', ['ui.bootstrap', 'filters']);
+var facialrecog = angular.module('facialrecog', ['ui.bootstrap']);
 
 facialrecog.
     config(['$routeProvider', '$compileProvider', function ($routeProvider, $compileProvider) {
@@ -7,11 +7,11 @@ facialrecog.
             templateUrl: '../../moduleResources/facialrecog/partials/captureImage.html'});
 
 
-        $routeProvider.when('/cohortdefinition', {controller: CohortDefinitionCtrl,
+      /*  $routeProvider.when('/cohortdefinition', {controller: CohortDefinitionCtrl,
             templateUrl: '../../moduleResources/facialrecog/partials/cohortdefinition.html'});
         $routeProvider.when('/cohortdefinition/:uuid', {controller: CohortDefinitionCtrl,
             templateUrl: '../../moduleResources/facialrecog/partials/cohortdefinition.html'});
         $routeProvider.when('/createcohortdefinition', {controller: CohortDefinitionCtrl,
-            templateUrl: '../../moduleResources/facialrecog/partials/cohortdefinition.html'});
-        $routeProvider.otherwise({redirectTo: '/login'});
+            templateUrl: '../../moduleResources/facialrecog/partials/cohortdefinition.html'});*/
+        $routeProvider.otherwise({redirectTo: '/captureImage'});
     }]);
