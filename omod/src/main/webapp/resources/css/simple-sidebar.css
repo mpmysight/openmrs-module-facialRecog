@@ -147,7 +147,7 @@
 ul.icons {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 28%;
+    padding-left: 25%;
     position: absolute;
     margin-top: 33%;
 }
@@ -170,4 +170,12 @@ text-align:center;
 
   .dg.ac {
       margin-top: 8%;
+  }
+
+  #canvas_capture{
+    float: right;
+    border-radius: 10px 50px;
+    position: inherit;
+    overflow-x: hidden;
+    margin-top: 10%;
   }
