@@ -15,11 +15,16 @@ package org.openmrs.module.facialrecog.web.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Patient;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
+import org.openmrs.module.facialrecog.api.FacialRecogService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * The main controller.
@@ -28,9 +33,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class  FacialRecogManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-	
+
 	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.GET)
 	public void view(ModelMap model) {
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
+
+	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.POST)
+	public void save(@RequestParam("image") MultipartFile image, @RequestParam(value = "patientuuid") String patientUuid ) {
+		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
+		PatientService patientService = Context.getPatientService();
+		Patient patient = patientService.getPatientByUuid(patientUuid);
+		if(patient != null){
+			facialRecogService.save(image,patientUuid);
+		} else {
+
+		}
+	}
+
 }

@@ -15,6 +15,7 @@ package org.openmrs.module.facialrecog.api;
 
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * This service exposes module's core functionality. It is a Spring managed bean which is configured in moduleApplicationContext.xml.
@@ -28,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public interface FacialRecogService extends OpenmrsService {
+    void save(MultipartFile image,String patientUuid);
      
 	/*
 	 * Add service methods here

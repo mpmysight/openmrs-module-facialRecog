@@ -18,6 +18,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.facialrecog.api.FacialRecogService;
 import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * It is a default implementation of {@link FacialRecogService}.
@@ -40,5 +41,12 @@ public class FacialRecogServiceImpl extends BaseOpenmrsService implements Facial
      */
     public FacialRecogDAO getDao() {
 	    return dao;
+    }
+
+    /**
+     *
+     */
+    public void save(MultipartFile image, String patientUuid){
+        
     }
 }
