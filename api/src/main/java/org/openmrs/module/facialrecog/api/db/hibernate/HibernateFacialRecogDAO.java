@@ -17,15 +17,30 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
+import org.openmrs.module.facialrecog.api.model.FacialRecogData;
+
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+
+
+import java.util.List;
 
 /**
  * It is a default implementation of  {@link FacialRecogDAO}.
  */
 public class HibernateFacialRecogDAO implements FacialRecogDAO {
+	@Autowired
 	protected final Log log = LogFactory.getLog(this.getClass());
-	
-	private SessionFactory sessionFactory;
-	
+//	private SessionFactory sessionFactory;
+	protected SessionFactory sessionFactory;
+	protected Class mappedClass =FacialRecogData.class;
+
+	public HibernateFacialRecogDAO(){
+		super();
+	}
 	/**
      * @param sessionFactory the sessionFactory to set
      */
@@ -39,4 +54,41 @@ public class HibernateFacialRecogDAO implements FacialRecogDAO {
     public SessionFactory getSessionFactory() {
 	    return sessionFactory;
     }
+
+	public FacialRecogData getById(Integer id){
+		return (FacialRecogData)sessionFactory.getCurrentSession().get(mappedClass,id);
+	}
+
+	public FacialRecogData getByUuid(String uuid){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(mappedClass);
+		criteria.add(Restrictions.eq("uuid", uuid));
+		criteria.add(Restrictions.eq("voided", Boolean.FALSE));
+		return (FacialRecogData)criteria.uniqueResult();
+	}
+
+	public List<FacialRecogData> getAll(){;
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(mappedClass);
+		return (List<FacialRecogData>) criteria.list();
+	}
+
+	public FacialRecogData saveOrUpdate(FacialRecogData object){
+		sessionFactory.getCurrentSession().saveOrUpdate(object);
+		return object;
+	}
+
+	public FacialRecogData update(FacialRecogData object){
+		sessionFactory.getCurrentSession().update(object);
+		return object;
+	}
+
+	public void delete(FacialRecogData object){
+		sessionFactory.getCurrentSession().delete(object);
+	}
+
+	public Number count(){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(mappedClass);
+		criteria.add(Restrictions.eq("voided", Boolean.FALSE));
+		criteria.setProjection(Projections.rowCount());
+		return (Number) criteria.uniqueResult();
+	}
 }

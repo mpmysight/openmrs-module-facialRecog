@@ -14,6 +14,9 @@
 package org.openmrs.module.facialrecog.api.db;
 
 import org.openmrs.module.facialrecog.api.FacialRecogService;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
+import org.openmrs.module.facialrecog.api.model.FacialRecogData;
 
 /**
  *  Database methods for {@link FacialRecogService}.
@@ -23,4 +26,31 @@ public interface FacialRecogDAO {
 	/*
 	 * Add DAO methods here
 	 */
+
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+    FacialRecogData getById(Integer id);
+
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+    FacialRecogData getByUuid(String uuid);
+
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+    List<FacialRecogData> getAll();
+
+    /*@SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+    List<FacialRecogData> getByScheduled(Boolean scheduled);*/
+
+    @Transactional
+    FacialRecogData saveOrUpdate(FacialRecogData object);
+
+    @Transactional
+    FacialRecogData update(FacialRecogData object);
+
+    @Transactional
+    void delete(FacialRecogData object);
+
+    Number count();
 }
