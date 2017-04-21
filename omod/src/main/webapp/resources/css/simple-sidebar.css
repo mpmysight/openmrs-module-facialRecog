@@ -157,8 +157,6 @@ text-align:center;
 }
 
 #video, #canvas {
-    //margin-left: 230px;
-    //margin-top: 120px;
     position: absolute;
     margin: 0px auto;
         width: 500px;
@@ -174,7 +172,7 @@ text-align:center;
 
   #canvas_capture{
     float: right;
-    border-radius: 10px 50px;
+    border-radius: 5px 10px;
     position: inherit;
     overflow-x: hidden;
     margin-top: 10%;

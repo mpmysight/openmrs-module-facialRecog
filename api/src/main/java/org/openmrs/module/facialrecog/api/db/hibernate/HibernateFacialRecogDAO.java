@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class HibernateFacialRecogDAO implements FacialRecogDAO {
 	@Autowired
-	protected final Log log = LogFactory.getLog(this.getClass());
+//	protected final Log log = LogFactory.getLog(this.getClass());
 //	private SessionFactory sessionFactory;
 	protected SessionFactory sessionFactory;
 	protected Class mappedClass =FacialRecogData.class;
