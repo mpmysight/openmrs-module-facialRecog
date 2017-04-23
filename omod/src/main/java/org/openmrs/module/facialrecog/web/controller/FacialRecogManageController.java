@@ -16,15 +16,21 @@ package org.openmrs.module.facialrecog.web.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.Patient;
+import org.openmrs.PersonName;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.facialrecog.api.FacialRecogService;
+import org.openmrs.module.facialrecog.web.utils.WebConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The main controller.
@@ -36,10 +42,11 @@ public class  FacialRecogManageController {
 
 	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.GET)
 	public void view(ModelMap model) {
+		log.error("Hello There");
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
 
-	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.POST)
 	public void save(@RequestParam("image") MultipartFile image, @RequestParam(value = "patientuuid") String patientUuid ) {
 		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
 		PatientService patientService = Context.getPatientService();
@@ -49,6 +56,12 @@ public class  FacialRecogManageController {
 		} else {
 
 		}
+	}*/
+	@RequestMapping(value = "/module/facialrecog/identify.json", method = RequestMethod.POST)
+	public Map<String, Object> identify(@RequestParam("faceimagedata") String encodedImage) {
+        //ToDo: Edit to include logic to identify
+        Patient patient = new Patient();
+        return WebConverter.convertPatient(patient);
 	}
 
 }
