@@ -19,13 +19,15 @@ package org.openmrs.module.facialrecog.api.model;
  */
 
 import org.openmrs.BaseOpenmrsData;
+import org.openmrs.Patient;
+
 import java.io.Serializable;
 
 public class FacialRecogData extends BaseOpenmrsData implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Integer id;
-    private Integer patientId;
+    private Patient patient;
     private String filePath;
 
     public Integer getId() {
@@ -36,12 +38,12 @@ public class FacialRecogData extends BaseOpenmrsData implements Serializable {
         this.id = id;
     }
 
-    public Integer getPatientId(){
-        return patientId;
+    public Patient getPatient(){
+        return patient;
     }
 
-    public void setPatientId(final Integer patientId){
-        this.patientId = patientId;
+    public void setPatient(final Patient patient){
+        this.patient = patient;
     }
 
     public String getFilePath(){

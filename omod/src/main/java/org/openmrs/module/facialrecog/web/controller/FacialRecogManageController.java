@@ -59,8 +59,8 @@ public class  FacialRecogManageController {
 	}*/
 	@RequestMapping(value = "/module/facialrecog/identify.json", method = RequestMethod.POST)
 	public Map<String, Object> identify(@RequestParam("faceimagedata") String encodedImage) {
-        //ToDo: Edit to include logic to identify
-        Patient patient = new Patient();
+		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
+        Patient patient = facialRecogService.identify(encodedImage);
         return WebConverter.convertPatient(patient);
 	}
 
