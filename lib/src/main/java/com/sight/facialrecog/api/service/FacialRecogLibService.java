@@ -5,8 +5,8 @@ package com.sight.facialrecog.api.service;
  */
 public class FacialRecogLibService {
 
-    public static void save(String encodedImageStrg){
-
+    public static String save(String encodedImageStrg){
+        return null;
     }
 
     public static String identify (String encodedImageStrg){

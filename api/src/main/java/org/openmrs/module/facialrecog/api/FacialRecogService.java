@@ -13,6 +13,7 @@
  */
 package org.openmrs.module.facialrecog.api;
 
+import org.openmrs.Patient;
 import org.openmrs.api.OpenmrsService;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,7 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Transactional
 public interface FacialRecogService extends OpenmrsService {
-    void save(MultipartFile image,String patientUuid);
+    void save(String encodedImage,String patientUuid);
+    Patient identify(String encodedImage);
      
 	/*
 	 * Add service methods here

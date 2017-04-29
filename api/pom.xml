@@ -23,7 +23,11 @@
 		</dependency> 
 		-->
 
-		
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>${project.parent.artifactId}-lib</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		
 
 		<!-- Begin OpenMRS core -->
