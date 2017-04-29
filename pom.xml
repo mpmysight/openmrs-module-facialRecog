@@ -30,7 +30,7 @@
 	<modules>
 		<module>api</module>
 		<module>omod</module>
-        <module>facerecoglib</module>
+        <module>lib</module>
     </modules>
 	
 	<properties>

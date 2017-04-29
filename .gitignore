@@ -1,5 +1,6 @@
 .idea/
 api/target/
 omod/target/
+lib/target/
 *.iml
 

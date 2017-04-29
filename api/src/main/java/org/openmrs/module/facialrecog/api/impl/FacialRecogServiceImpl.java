@@ -13,12 +13,15 @@
  */
 package org.openmrs.module.facialrecog.api.impl;
 
+import org.openmrs.Patient;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.facialrecog.api.FacialRecogService;
 import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sight.facialrecog.api.service.FacialRecogLibService;
 
 /**
  * It is a default implementation of {@link FacialRecogService}.
@@ -28,6 +31,7 @@ public class FacialRecogServiceImpl extends BaseOpenmrsService implements Facial
 	protected final Log log = LogFactory.getLog(this.getClass());
 	
 	private FacialRecogDAO dao;
+	private FacialRecogLibService facialRecogLibService;
 	
 	/**
      * @param dao the dao to set
@@ -46,7 +50,13 @@ public class FacialRecogServiceImpl extends BaseOpenmrsService implements Facial
     /**
      *
      */
-    public void save(MultipartFile image, String patientUuid){
-        
+    public void save(String encodedImage, String patientUuid){
+        String filename = facialRecogLibService.save(encodedImage);
+        //dao.save
+    }
+
+    public Patient identify(String encodedImage){
+        String filename =  facialRecogLibService.identify(encodedImage);
+        return null;
     }
 }
