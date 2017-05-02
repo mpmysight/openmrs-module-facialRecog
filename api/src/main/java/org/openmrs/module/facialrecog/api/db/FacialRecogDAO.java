@@ -37,11 +37,11 @@ public interface FacialRecogDAO {
 
     @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
-    List<FacialRecogData> getAll();
+    FacialRecogData getByFilePath(String filePath);
 
-    /*@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     @Transactional(readOnly = true)
-    List<FacialRecogData> getByScheduled(Boolean scheduled);*/
+    List<FacialRecogData> getAll();
 
     @Transactional
     FacialRecogData saveOrUpdate(FacialRecogData object);

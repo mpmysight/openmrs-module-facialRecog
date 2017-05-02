@@ -14,14 +14,17 @@
 package org.openmrs.module.facialrecog.api.impl;
 
 import org.openmrs.Patient;
+import org.openmrs.api.PatientService;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.facialrecog.api.FacialRecogService;
 import org.openmrs.module.facialrecog.api.db.FacialRecogDAO;
-import org.springframework.web.multipart.MultipartFile;
+
+import org.openmrs.api.context.Context;
 
 import com.sight.facialrecog.api.service.FacialRecogLibService;
+import org.openmrs.module.facialrecog.api.model.FacialRecogData;
 
 /**
  * It is a default implementation of {@link FacialRecogService}.
@@ -51,12 +54,31 @@ public class FacialRecogServiceImpl extends BaseOpenmrsService implements Facial
      *
      */
     public void save(String encodedImage, String patientUuid){
-        String filename = facialRecogLibService.save(encodedImage);
-        //dao.save
+        String filePath = facialRecogLibService.save(encodedImage);
+        if(filePath != null){
+            PatientService patientService = Context.getPatientService();
+            Patient patient = patientService.getPatientByUuid(patientUuid);
+            if(patient != null){
+                FacialRecogData facialRecogData = new FacialRecogData();
+                facialRecogData.setPatient(patient);
+                facialRecogData.setFilePath(filePath);
+                dao.saveOrUpdate(facialRecogData);
+            } else {
+                //throw patient not found exception
+            }
+        } else {
+            //throw Image Save Exception
+        }
     }
 
     public Patient identify(String encodedImage){
-        String filename =  facialRecogLibService.identify(encodedImage);
+        String filePath =  facialRecogLibService.identify(encodedImage);
+        if(filePath != null){
+            FacialRecogData facialRecogData = dao.getByFilePath(filePath);
+            if(facialRecogData!= null){
+                return facialRecogData.getPatient();
+            }
+        }
         return null;
     }
 }

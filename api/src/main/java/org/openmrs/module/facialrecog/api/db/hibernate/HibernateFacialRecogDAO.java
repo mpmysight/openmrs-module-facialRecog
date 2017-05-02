@@ -66,6 +66,13 @@ public class HibernateFacialRecogDAO implements FacialRecogDAO {
 		return (FacialRecogData)criteria.uniqueResult();
 	}
 
+	public FacialRecogData getByFilePath(String filePath){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(mappedClass);
+		criteria.add(Restrictions.eq("filePath", filePath));
+		criteria.add(Restrictions.eq("voided", Boolean.FALSE));
+		return (FacialRecogData)criteria.uniqueResult();
+	}
+
 	public List<FacialRecogData> getAll(){;
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(mappedClass);
 		return (List<FacialRecogData>) criteria.list();
