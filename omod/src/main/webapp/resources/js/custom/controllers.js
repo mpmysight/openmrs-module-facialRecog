@@ -40,6 +40,7 @@ function CaptureCtrl ($scope, $location, $data) {
       tracking.track('#video', tracker, { camera: true });
       tracker.on('track', function(event) {
         context.clearRect(0, 0, canvas.width, canvas.height);
+
         event.data.forEach(function(trackerFrameProperties) {
             currentTrackerFrameProperties=trackerFrameProperties;
             var rect = trackerFrameProperties;
@@ -80,8 +81,12 @@ function CaptureCtrl ($scope, $location, $data) {
             //canvas_capture.getContext('2d').drawImage(video, mnrect.x + 0.5*mnrect.width, mnrect.y + 0.5*mnrect.height, 1.3*mnrect.width, 1.3*mnrect.height,0,0,mnrect.width,mnrect.height);
             canvas_capture.getContext('2d').drawImage(video, rect.x + rect.width / 2, rect.y + rect.width / 2, rect.width, rect.height, 0, 0, rect.width, rect.height);
             //canvas_capture.getContext('2d').drawImage(video, myrect.x, myrect.y, myrect.width, myrect.height, myrect.x, myrect.y, myrect.width, myrect.height);
+
+            //convert to desired file format
             capturedImageData = canvas_capture.toDataURL('image/png');
             console.log("Data: " + JSON.stringify(capturedImageData));
+            //Canvas2Image.saveAsPNG(canvas_capture);
+
         } else {
             console.log("No face tracked/detected!!!")
         }
