@@ -23,8 +23,32 @@ function videoError(e) {
     // do something
 }
 
-function CaptureCtrl ($scope, $location, $data) {
 
+function ImageCaptureModal($scope, $rootScope,$uibModalInstance){
+    $scope.loadImage = function(){
+        var canvas_capture = document.getElementById('capturedImage');
+        console.log("Captured Image");
+        console.log($rootScope.capturedImageData);
+        if($rootScope.capturedImageData != null){
+            canvas_capture.getContext("2d").putImageData($rootScope.capturedImageData, 10,10);
+        }
+    }
+
+     $scope.identifyFace = function(){
+         if($rootScope.capturedImageData != null)
+         {
+            $data.identifyFace($rootScope.capturedImageData);
+         } else {
+            console.log("No Image to Identify");
+         }
+     }
+     $scope.cancelModal = function () {
+       $uibModalInstance.dismiss('cancel');
+     };
+}
+facialrecog.controller("ImageCaptureModal",ImageCaptureModal);
+
+function CaptureCtrl ($scope, $rootScope,$location, $data, $uibModal) {
       var video = document.getElementById('video');
       var captureButton = document.getElementById('captureButton');
       var canvas = document.getElementById('canvas');
@@ -32,19 +56,19 @@ function CaptureCtrl ($scope, $location, $data) {
       var context = canvas.getContext('2d');
       var tracker = new tracking.ObjectTracker('face');
       var currentTrackerFrameProperties = null;
-      var capturedImageData = null;
-      var streaming = false;
-      tracker.setInitialScale(2);
-      tracker.setStepSize(2);
-      tracker.setEdgesDensity(0.1);
-      tracking.track('#video', tracker, { camera: true });
-      tracker.on('track', function(event) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        event.data.forEach(function(trackerFrameProperties) {
-            currentTrackerFrameProperties=trackerFrameProperties;
-            var rect = trackerFrameProperties;
-            context.strokeStyle = '#a64ceb';
-            context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+      $rootScope.capturedImageData = null;
+            var streaming = false;
+            tracker.setInitialScale(2);
+            tracker.setStepSize(2);
+            tracker.setEdgesDensity(0.1);
+            tracking.track('#video', tracker, { camera: true });
+            tracker.on('track', function(event) {
+              context.clearRect(0, 0, canvas.width, canvas.height);
+              event.data.forEach(function(trackerFrameProperties) {
+                  currentTrackerFrameProperties=trackerFrameProperties;
+                  var rect = trackerFrameProperties;
+                  context.strokeStyle = '#a64ceb';
+              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
             context.font = '11px Helvetica';
             context.fillStyle = "#fff";
             context.fillText('x: ' + rect.x + 'px and ' + rect.width + ' width', rect.x + rect.width + 5, rect.y + 11);
@@ -80,20 +104,35 @@ function CaptureCtrl ($scope, $location, $data) {
             //canvas_capture.getContext('2d').drawImage(video, mnrect.x + 0.5*mnrect.width, mnrect.y + 0.5*mnrect.height, 1.3*mnrect.width, 1.3*mnrect.height,0,0,mnrect.width,mnrect.height);
             canvas_capture.getContext('2d').drawImage(video, rect.x + rect.width / 2, rect.y + rect.width / 2, rect.width, rect.height, 0, 0, rect.width, rect.height);
             //canvas_capture.getContext('2d').drawImage(video, myrect.x, myrect.y, myrect.width, myrect.height, myrect.x, myrect.y, myrect.width, myrect.height);
-            capturedImageData = canvas_capture.toDataURL('image/png');
-            console.log("Data: " + JSON.stringify(capturedImageData));
+            $rootScope.capturedImageData = canvas_capture.getContext('2d').getImageData(0, 0, rect.width, rect.height);
+            //toDataURL('image/png');
+
+
+
+            //show popup
+            var modalInstance = $uibModal.open({
+                      animation: false,
+                      ariaLabelledBy: 'modal-title',
+                      ariaDescribedBy: 'modal-body',
+                      templateUrl: '../../moduleResources/facialrecog/partials/imageCaptureModal.html',
+                      controller: 'ImageCaptureModal',
+                      controllerAs: '$ctrl',
+                      size: "lg",
+                      resolve: {
+                        items: function () {
+                          return null;//$ctrl.items;
+                        }
+                      }
+                    });
+
+                    modalInstance.result.then(function (selectedItem) {
+                      //$ctrl.selected = selectedItem;
+                    }, function () {
+                      console.log('Modal dismissed at: ' + new Date());
+                    });
         } else {
             console.log("No face tracked/detected!!!")
         }
-     }
-
-     $scope.identifyFace = function(){
-         if(capturedImageData != null)
-         {
-             $data.identifyFace(capturedImageData);
-         } else {
-             console.log("No Image to Identify");
-         }
      }
 }
 

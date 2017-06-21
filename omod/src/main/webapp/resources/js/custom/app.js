@@ -1,8 +1,9 @@
-var facialrecog = angular.module('facialrecog', ['ui.bootstrap']);
+var facialrecog = angular.module('facialrecog', ['ngRoute','ui.bootstrap']);
+
 
 facialrecog.
     config(['$routeProvider', '$compileProvider', function ($routeProvider, $compileProvider) {
-        $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file):/);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file):/);
         $routeProvider.when('/captureImage', {controller: CaptureCtrl,
             templateUrl: '../../moduleResources/facialrecog/partials/captureImage.html'});
         $routeProvider.otherwise({redirectTo: '/captureImage'});
