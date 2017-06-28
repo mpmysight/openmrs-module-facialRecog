@@ -6,7 +6,6 @@ $scope.cameraStarted = false;
         document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
     }
 
-
     navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 
     if (navigator.getUserMedia) {
@@ -68,24 +67,24 @@ function CaptureCtrl ($scope, $rootScope,$location, $data, $uibModal) {
       var tracker = new tracking.ObjectTracker('face');
       var currentTrackerFrameProperties = null;
       $rootScope.capturedImageData = null;
-            var streaming = false;
-            tracker.setInitialScale(2);
-            tracker.setStepSize(2);
-            tracker.setEdgesDensity(0.1);
-            $rootScope.trackerTask = tracking.track('#video', tracker, { camera: true });
-            tracker.on('track', function(event) {
-              context.clearRect(0, 0, canvas.width, canvas.height);
-              event.data.forEach(function(trackerFrameProperties) {
-                  currentTrackerFrameProperties=trackerFrameProperties;
-                  var rect = trackerFrameProperties;
-                  context.strokeStyle = '#a64ceb';
-                  context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-                  context.font = '11px Helvetica';
-                  context.fillStyle = "#fff";
-                  context.fillText('x: ' + rect.x + 'px and ' + rect.width + ' width', rect.x + rect.width + 5, rect.y + 11);
-                  context.fillText('y: ' + rect.y + 'px and ' + rect.height + ' height', rect.x + rect.width + 5, rect.y + 22);
-              });
-            });
+        var streaming = false;
+        tracker.setInitialScale(2);
+        tracker.setStepSize(2);
+        tracker.setEdgesDensity(0.1);
+        $rootScope.trackerTask = tracking.track('#video', tracker, { camera: true });
+        tracker.on('track', function(event) {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          event.data.forEach(function(trackerFrameProperties) {
+              currentTrackerFrameProperties=trackerFrameProperties;
+              var rect = trackerFrameProperties;
+              context.strokeStyle = '#a64ceb';
+              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+              context.font = '11px Helvetica';
+              context.fillStyle = "#fff";
+              context.fillText('x: ' + rect.x + 'px and ' + rect.width + ' width', rect.x + rect.width + 5, rect.y + 11);
+              context.fillText('y: ' + rect.y + 'px and ' + rect.height + ' height', rect.x + rect.width + 5, rect.y + 22);
+          });
+        });
       var gui = new dat.GUI();
       gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
       gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
