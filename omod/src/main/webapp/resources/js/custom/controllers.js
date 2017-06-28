@@ -24,7 +24,7 @@ function videoError(e) {
 }
 
 
-function ImageCaptureModal($scope, $rootScope,$uibModalInstance){
+function ImageCaptureModal($scope, $rootScope,$uibModalInstance, $data){
     $scope.loadImage = function(){
         var canvas_capture = document.getElementById('capturedImage');
         console.log("Captured Image");
@@ -37,13 +37,24 @@ function ImageCaptureModal($scope, $rootScope,$uibModalInstance){
      $scope.identifyFace = function(){
          if($rootScope.capturedImageData != null)
          {
-            $data.identifyFace($rootScope.capturedImageData);
+            var canvas_capture = document.getElementById('capturedImage');
+            $data.identifyFace(canvas_capture.toDataURL("image/png")).then(
+             (result)=>{
+                if(angular.equals(result.data, {})){
+                    alert("No Match found");
+                 } else {
+                    alert(JSON.stringify(result.data));
+                 }
+             }, (error)=>{
+                 console.log("IDENTIFICATION ERROR : "+JSON.stringify(error));
+             });
          } else {
             console.log("No Image to Identify");
          }
      }
-     $scope.cancelModal = function () {
+     $scope.dismissModal = function () {
        $uibModalInstance.dismiss('cancel');
+       $rootScope.trackerTask.run();
      };
 }
 facialrecog.controller("ImageCaptureModal",ImageCaptureModal);
@@ -61,20 +72,20 @@ function CaptureCtrl ($scope, $rootScope,$location, $data, $uibModal) {
             tracker.setInitialScale(2);
             tracker.setStepSize(2);
             tracker.setEdgesDensity(0.1);
-            tracking.track('#video', tracker, { camera: true });
+            $rootScope.trackerTask = tracking.track('#video', tracker, { camera: true });
             tracker.on('track', function(event) {
               context.clearRect(0, 0, canvas.width, canvas.height);
               event.data.forEach(function(trackerFrameProperties) {
                   currentTrackerFrameProperties=trackerFrameProperties;
                   var rect = trackerFrameProperties;
                   context.strokeStyle = '#a64ceb';
-              context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-            context.font = '11px Helvetica';
-            context.fillStyle = "#fff";
-            context.fillText('x: ' + rect.x + 'px and ' + rect.width + ' width', rect.x + rect.width + 5, rect.y + 11);
-            context.fillText('y: ' + rect.y + 'px and ' + rect.height + ' height', rect.x + rect.width + 5, rect.y + 22);
-        });
-      });
+                  context.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                  context.font = '11px Helvetica';
+                  context.fillStyle = "#fff";
+                  context.fillText('x: ' + rect.x + 'px and ' + rect.width + ' width', rect.x + rect.width + 5, rect.y + 11);
+                  context.fillText('y: ' + rect.y + 'px and ' + rect.height + ' height', rect.x + rect.width + 5, rect.y + 22);
+              });
+            });
       var gui = new dat.GUI();
       gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01);
       gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1);
@@ -97,39 +108,32 @@ function CaptureCtrl ($scope, $rootScope,$location, $data, $uibModal) {
             var rect = currentTrackerFrameProperties;
             //video.style.display = "none";
             canvas_capture.style.display = "block";
-            captureButton.innerText = "Retake";
             canvas_capture.width = rect.width;
             canvas_capture.height = rect.height;
-            //canvas_capture.getContext('2d').drawImage(video, 0, 0, canvas_capture.width, canvas_capture.height);
-            //canvas_capture.getContext('2d').drawImage(video, mnrect.x + 0.5*mnrect.width, mnrect.y + 0.5*mnrect.height, 1.3*mnrect.width, 1.3*mnrect.height,0,0,mnrect.width,mnrect.height);
             canvas_capture.getContext('2d').drawImage(video, rect.x + rect.width / 2, rect.y + rect.width / 2, rect.width, rect.height, 0, 0, rect.width, rect.height);
-            //canvas_capture.getContext('2d').drawImage(video, myrect.x, myrect.y, myrect.width, myrect.height, myrect.x, myrect.y, myrect.width, myrect.height);
             $rootScope.capturedImageData = canvas_capture.getContext('2d').getImageData(0, 0, rect.width, rect.height);
-            //toDataURL('image/png');
-
-
-
+            $rootScope.trackerTask.stop();
             //show popup
             var modalInstance = $uibModal.open({
-                      animation: false,
-                      ariaLabelledBy: 'modal-title',
-                      ariaDescribedBy: 'modal-body',
-                      templateUrl: '../../moduleResources/facialrecog/partials/imageCaptureModal.html',
-                      controller: 'ImageCaptureModal',
-                      controllerAs: '$ctrl',
-                      size: "lg",
-                      resolve: {
-                        items: function () {
-                          return null;//$ctrl.items;
-                        }
-                      }
-                    });
+                  animation: false,
+                  ariaLabelledBy: 'modal-title',
+                  ariaDescribedBy: 'modal-body',
+                  templateUrl: '../../moduleResources/facialrecog/partials/imageCaptureModal.html',
+                  controller: 'ImageCaptureModal',
+                  controllerAs: '$ctrl',
+                  size: "lg",
+                  resolve: {
+                    items: function () {
+                      return null;//$ctrl.items;
+                    }
+                  }
+            });
 
-                    modalInstance.result.then(function (selectedItem) {
-                      //$ctrl.selected = selectedItem;
-                    }, function () {
-                      console.log('Modal dismissed at: ' + new Date());
-                    });
+            modalInstance.result.then(function (selectedItem) {
+              //$ctrl.selected = selectedItem;
+            }, function (error) {
+                console.log(JSON.stringify(error));
+            });
         } else {
             console.log("No face tracked/detected!!!")
         }

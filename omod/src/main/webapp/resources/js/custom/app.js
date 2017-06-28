@@ -11,9 +11,9 @@ facialrecog.
 
 facialrecog.factory('$data', function ($http) {
     var identifyFace = function(faceImageData){
-        console.log("Uploading data: "+faceImageData);
-        var $return =  $http.post("identify.json", {"faceimagedata":faceImageData});
-        console.log("Identification Response: "+ JSON.stringify($return));
+        return $http.post("identify.json", faceImageData).then(
+        (res)=>{ return $http.get("identify.json"); }
+        );
     }
 
     return {identifyFace:identifyFace}

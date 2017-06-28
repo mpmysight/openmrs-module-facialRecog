@@ -1,17 +1,17 @@
 <div id="main-modal">
     <div class="modal-frame">
-        <div class="image-container">
+        <div class="image-container" style="height:400px; width:400px; margin:auto">
             <canvas ng-init="loadImage()" id="capturedImage"></canvas>
+        </div>
+        <div style="width:400px;margin:auto">
+            <ul class="icons-modal">
+                <!-- li><a href="#" class="fa-twitter">Twitter</a></li -->
+                <button type="button" ng-click="identifyFace()">Identify</button>
+                <button type="button">Register</button>
+                <button id="captureButton" type="button" ng-click="dismissModal()">Retake</button>
+            </ul>
         </div>
     </div>
 
-    <div>
-        <ul class="icons-modal">
-            <!-- li><a href="#" class="fa-twitter">Twitter</a></li -->
-            <button type="button" ng-click="identifyFace()">Identify</button>
-            <button type="button">Register</button>
-            <button id="captureButton" type="button" ng-click="dismissModal()">Cancel</button>
-            <a href="" download="snapshot.webp">
-        </ul>
-    </div>
+
 </div>

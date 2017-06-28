@@ -11,6 +11,7 @@
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-resource.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-route.min.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/angular/angular-route.min.js.map"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/tracking-min.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/tracking.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/face-min.js"/>

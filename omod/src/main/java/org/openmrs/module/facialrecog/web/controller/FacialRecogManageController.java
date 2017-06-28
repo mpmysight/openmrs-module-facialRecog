@@ -23,9 +23,7 @@ import org.openmrs.module.facialrecog.api.FacialRecogService;
 import org.openmrs.module.facialrecog.web.utils.WebConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
@@ -39,29 +37,24 @@ import java.util.Set;
 public class  FacialRecogManageController {
 	
 	protected final Log log = LogFactory.getLog(getClass());
+	private String faceImageData;
 
 	@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.GET)
 	public void view(ModelMap model) {
-		log.error("Hello There");
+
 		model.addAttribute("user", Context.getAuthenticatedUser());
 	}
 
-	/*@RequestMapping(value = "/module/facialrecog/facehome.list", method = RequestMethod.POST)
-	public void save(@RequestParam("image") MultipartFile image, @RequestParam(value = "patientuuid") String patientUuid ) {
-		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
-		PatientService patientService = Context.getPatientService();
-		Patient patient = patientService.getPatientByUuid(patientUuid);
-		if(patient != null){
-			facialRecogService.save(image,patientUuid);
-		} else {
-
-		}
-	}*/
 	@RequestMapping(value = "/module/facialrecog/identify.json", method = RequestMethod.POST)
-	public Map<String, Object> identify(@RequestParam("faceimagedata") String encodedImage) {
+	public void setFaceImageData(@RequestBody String encodedImage) {
+		faceImageData = encodedImage;
+	}
+
+	@RequestMapping(value = "/module/facialrecog/identify.json", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> identify() {
 		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
-        Patient patient = facialRecogService.identify(encodedImage);
-        return WebConverter.convertPatient(patient);
+		Patient patient = facialRecogService.identify(faceImageData);
+		return WebConverter.convertPatient(patient);
 	}
 
 }
