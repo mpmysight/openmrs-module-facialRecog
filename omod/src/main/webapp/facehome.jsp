@@ -19,10 +19,11 @@
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/tracking/stats.min.js"/>
 
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/app.js"/>
-<openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/controllers.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/controllers/CaptureFaceControllers.js"/>
+<openmrs:htmlInclude file="/moduleResources/facialrecog/js/custom/controllers/SearchPatientControllers.js"/>
 <openmrs:htmlInclude file="/moduleResources/facialrecog/js/ui-bootstrap/ui-bootstrap-tpls-2.5.0.min.js"/>
 
-<h3 class="module-head"><spring:message code="mUzima Biometrics - Facial Recognition"/></h3>
+<h3 class="module-head"><spring:message code="Search Patients"/></h3>
 <div class="bootstrap-scope" ng-app="facialrecog">
     <div ng-view ></div>
 </div>
