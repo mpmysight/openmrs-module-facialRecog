@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,6 +56,17 @@ public class  FacialRecogManageController {
 		FacialRecogService facialRecogService = Context.getService(FacialRecogService.class);
 		Patient patient = facialRecogService.identify(faceImageData);
 		return WebConverter.convertPatient(patient);
+	}
+
+	@RequestMapping(value="module/facialrecog/searchpatient.json", method=RequestMethod.GET)
+	public @ResponseBody Map<String, Object> searchPatient(@RequestParam(value="patientId") String identifier){
+		PatientService patientService = Context.getPatientService();
+		Boolean includeVoided = false;
+		List<Patient> patients = patientService.getPatientsByIdentifier(identifier, includeVoided);
+		if(patients.size() == 1){
+			return WebConverter.convertPatient(patients.get(0));
+		}
+		return WebConverter.convertPatient(null);
 	}
 
 }
